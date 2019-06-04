@@ -24,7 +24,7 @@ import java.util.Map;
 public class Main {
 
   @Value("${spring.datasource.url}")
-  private String dbUrl;
+  private String dBUrl;
 
   @Autowired
   private DataSource dataSource;
@@ -46,7 +46,7 @@ public class Main {
       stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
       ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 
-      ArrayList<String> output = new ArrayList<String>();
+      ArrayList<String> output = new ArrayList<String>(); 
       while (rs.next()) {
         output.add("Read from DB: " + rs.getTimestamp("tick"));
       }
@@ -61,11 +61,11 @@ public class Main {
 
   @Bean
   public DataSource dataSource() throws SQLException {
-    if (dbUrl == null || dbUrl.isEmpty()) {
+    if (dBUrl == null || dBUrl.isEmpty()) {
       return new HikariDataSource();
     } else {
       HikariConfig config = new HikariConfig();
-      config.setJdbcUrl(dbUrl);
+      config.setJdbcUrl(dBUrl);
       return new HikariDataSource(config);
     }
   }
