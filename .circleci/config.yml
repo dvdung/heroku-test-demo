@@ -75,13 +75,11 @@ jobs:
           command: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
-            - "31:f4:a8:10:33:10:66:d9:3e:12:c7:31:b7:d7:36:92"
+            - "4d:26:84:ea:f4:71:dd:db:83:0b:07:46:b3:0c:35:1b"
       - run:
           name: Deploy Master to Heroku
           command: |
             git push --force git@heroku.com:floating-stream-79370.git HEAD:refs/heads/master
-            heroku run python manage.py deploy
-            heroku restart
 
 workflows:
   version: 2
